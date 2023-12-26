@@ -1,7 +1,7 @@
 .about-container {
     display: flex;
     background: linear-gradient(180deg, #f9f9f9 0%, #7EB1D5 97.4%, #7BAFD4 100%);
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,13 +9,15 @@
     border: 2px solid red;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
   }
 
   .image-container {
-    position: absolute;
     width: 60vmin;
     height: 60vmin;
-    left: 15%;
+    left: -5%;
+    position: relative;
+    order: 1;
   }
 
     .border-image {
@@ -25,12 +27,35 @@
     }
 
   .about-pic {
-    position: absolute;
-    top: 50%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    width: 30vmin;
-    height: 30vmin;
+    transform: translate(1%, -149%);
+    width: 50%;
+    height: 50%;
     border-radius: 50%;
     object-fit: cover;
   }
+
+  app-about-table {
+    position: relative;
+    order: 2;
+    margin-right: 2vmin;
+  }
+
+  @media (max-width: 1270px) {
+    .image-container {
+        width: 50vmin;
+        height: 50vmin;
+    }
+}
+
+@media (max-width: 1080px) {
+    .about-container {
+      flex-direction: column;
+    }
+  
+    .image-container {
+      width: 60vmin;
+      height: 60vmin;
+      margin-bottom: 2vmin;
+      left: 0;
+    }
+}

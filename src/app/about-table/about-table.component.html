@@ -1,0 +1,30 @@
+<!-- about-table.component.html -->
+<div class="table-container">
+    <div class="tabs">
+      <div
+        *ngFor="let tab of tabs; let i = index"
+        (click)="setActiveTab(tab)"
+        [ngClass]="{'active-tab': activeTab === tab}"
+        class="tab"
+      >
+        {{ tab }}
+      </div>
+    </div>
+    <div class="tab-content">
+      <ng-container [ngSwitch]="activeTab">
+        <div *ngSwitchCase="'About Me'">
+          <!-- About me content here -->
+          <p>This is a sample about me</p>
+        </div>
+        <div *ngSwitchCase="'Tech Stack'">
+          <!-- Tech Stack content here -->
+          <p>This is a sample tech stack</p>
+        </div>
+        <div *ngSwitchCase="'Fun Facts'">
+          <!-- Fun Facts content here -->
+          <p>This is a sample fun</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  
