@@ -1,0 +1,36 @@
+.about-container {
+    display: flex;
+    background: linear-gradient(180deg, #f9f9f9 0%, #7EB1D5 97.4%, #7BAFD4 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    border: 2px solid red;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .image-container {
+    position: absolute;
+    width: 60vmin;
+    height: 60vmin;
+    left: 15%;
+  }
+
+    .border-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+  .about-pic {
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    width: 30vmin;
+    height: 30vmin;
+    border-radius: 50%;
+    object-fit: cover;
+  }
