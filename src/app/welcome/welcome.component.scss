@@ -75,6 +75,23 @@
       }
     }
 
+    .github-link {
+        display: block;
+        position: absolute;
+        right: 15%;
+        transform: translateX(50%) rotate(30deg);
+    
+        .github-logo {
+          width: 25vmin; 
+          height: auto; 
+    
+        }
+    
+        &:hover .github-logo path {
+          fill: black;
+        }
+    }
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -119,6 +136,19 @@
             }
         }
     }
+
+    .github-link {
+        display: block;
+        position: absolute;
+        margin-bottom: 83%;
+        right: 24%;
+
+        .github-logo {
+          width: 20vmin;
+          position: absolute;
+          transform: rotate(10deg);
+        }
+      }
 }
   
   @media (max-width: 380px) {
