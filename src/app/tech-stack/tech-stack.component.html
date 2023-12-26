@@ -1,0 +1,10 @@
+<div class="tech-stack" #scrollContainer>
+    <ng-container *ngFor="let item of techStack">
+      <div *ngIf="item.type !== 'divider'" class="tech-item">
+        <img [src]="item.icon" [alt]="item.name" *ngIf="item.icon">
+        <span *ngIf="!item.icon">{{ item.name }}</span>
+      </div>
+      <div *ngIf="item.type === 'divider'" class="divider">|</div>
+    </ng-container>
+  </div>
+  
