@@ -18,27 +18,39 @@ import { trigger, style, transition, animate } from '@angular/animations';
 export class AboutTableComponent {
   tabs = ['About Me', 'Tech Stack', 'Fun Facts'];
   activeTab: string = this.tabs[0];
-  fadeOutInProgress = false;
-  fadeInInProgress = false;
+  newActiveTab: string = this.tabs[0];
+  tabStates: { [key: string]: { fadingOut: boolean; fadingIn: boolean } } = {};
 
-  setActiveTab(tab: string) {
-    // Instantly update the tab background
-    this.activeTab = tab;
+  constructor() {
+    // Initialize state for each tab
+    this.tabs.forEach(tab => {
+      this.tabStates[tab] = { fadingOut: false, fadingIn: false };
+    });
+  }
 
-    // Start the fade-out animation for the content
-    this.fadeOutInProgress = true;
+  setActiveTab(newTab: string) {
+    if (newTab !== this.activeTab) {
+      const oldTab = this.activeTab;
+      this.activeTab = newTab;
 
-    setTimeout(() => {
-      // After the fade-out, update content and start fade-in
-      this.fadeOutInProgress = false;
-      this.fadeInInProgress = true;
+      if (oldTab) {
+        this.tabStates[oldTab].fadingOut = true;
+      }
 
       setTimeout(() => {
-        this.fadeInInProgress = false;
-      }, 250); // Same as the duration of fadeIn animation
-    }, 250); // Same as the duration of fadeOut animation
+        this.newActiveTab = newTab;
+        this.tabStates[newTab].fadingIn = true;
+
+        setTimeout(() => {
+          if (oldTab) {
+            this.tabStates[oldTab].fadingOut = false;
+          }
+          this.tabStates[newTab].fadingIn = false;
+        }, 500);
+      }, 250);
+    }
   }
-  
+
   getBackgroundPosition(): string {
     const tabIndex = this.tabs.indexOf(this.activeTab);
     return `${(100 / this.tabs.length) * tabIndex}%`;

@@ -1,4 +1,3 @@
-<!-- about-table.component.html -->
 <div class="table-container">
     <div class="tabs">
       <div class="tab-background" [style.left]="getBackgroundPosition()"></div>
@@ -11,25 +10,47 @@
         {{ tab }}
       </div>
     </div>
-    <div class="tab-content"
-     [ngClass]="{
-       'tab-content-animate-out': fadeOutInProgress,
-       'tab-content-animate-in': fadeInInProgress && !fadeOutInProgress
-     }">
-      <ng-container [ngSwitch]="activeTab">
-        <div *ngSwitchCase="'About Me'">
-          <!-- About me content here -->
-          <p>This is a sample about me</p>
+    <div class="tab-content">
+      <ng-container [ngSwitch]="newActiveTab">
+        <!-- About Me Tab -->
+        <div *ngIf="newActiveTab === 'About Me'" 
+             [ngClass]="{
+               'fade-in': tabStates['About Me'].fadingIn, 
+               'fade-out': tabStates['About Me'].fadingOut
+             }">
+          <div class="tab-text">
+            <p>
+              As a Master's Student at New Jersey Institute of Technology, I specialize in software engineering with a deep passion for building innovative applications. 
+              My outgoing and open-minded nature fuels my ability to collaborate effectively in diverse teams, driving towards creating exceptional applications. 
+              I'm motivated by the boundless potential of creation, aspiring to actualize dreams and innovation.
+            </p>
+          </div>
+          <div class="tab-image">
+            <img src="assets/manTechEmoji.png" alt="Tech Emoji">
+          </div>
         </div>
-        <div *ngSwitchCase="'Tech Stack'">
-          <!-- Tech Stack content here -->
-          <p>This is a sample tech stack</p>
+    
+        <!-- Tech Stack Tab -->
+        <div *ngIf="newActiveTab === 'Tech Stack'" 
+             [ngClass]="{
+               'fade-in': tabStates['Tech Stack'].fadingIn, 
+               'fade-out': tabStates['Tech Stack'].fadingOut
+             }">
+          <div class="tab-text">
+            <p>This is a sample tech stack</p>
+          </div>
         </div>
-        <div *ngSwitchCase="'Fun Facts'">
-          <!-- Fun Facts content here -->
-          <p>This is a sample fun</p>
+    
+        <!-- Fun Facts Tab -->
+        <div *ngIf="newActiveTab === 'Fun Facts'" 
+             [ngClass]="{
+               'fade-in': tabStates['Fun Facts'].fadingIn, 
+               'fade-out': tabStates['Fun Facts'].fadingOut
+             }">
+          <div class="tab-text">
+            <p>This is a sample fun</p>
+          </div>
         </div>
       </ng-container>
     </div>
-  </div>
-  
+    
