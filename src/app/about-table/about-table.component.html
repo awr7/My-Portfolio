@@ -1,6 +1,7 @@
 <!-- about-table.component.html -->
 <div class="table-container">
     <div class="tabs">
+      <div class="tab-background" [style.left]="getBackgroundPosition()"></div>
       <div
         *ngFor="let tab of tabs; let i = index"
         (click)="setActiveTab(tab)"
@@ -10,7 +11,11 @@
         {{ tab }}
       </div>
     </div>
-    <div class="tab-content">
+    <div class="tab-content"
+     [ngClass]="{
+       'tab-content-animate-out': fadeOutInProgress,
+       'tab-content-animate-in': fadeInInProgress && !fadeOutInProgress
+     }">
       <ng-container [ngSwitch]="activeTab">
         <div *ngSwitchCase="'About Me'">
           <!-- About me content here -->

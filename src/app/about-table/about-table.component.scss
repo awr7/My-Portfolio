@@ -11,32 +11,68 @@
     display: flex;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     font-family: 'Acme', sans-serif;
+    position: relative;
+  }
+
+  .tab-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(100% / 3);
+    background-color: #96BEDA;
+    transition: left 0.3s ease-in-out;
+    z-index: 0;
   }
   
   .tab {
     flex: 1;
     cursor: pointer;
+    position: relative;
     padding: 10px 0;
     user-select: none;
     text-align: center;
     background-color: transparent;
     color: inherit;
     font-size: 24px;
-  
+    z-index: 1;
+    transition: color 0.3s ease-in-out;
     &:hover {
-      background-color: #96BEDA;
       color: white;
     }
   }
   
   .active-tab {
-    background-color: #96BEDA;
+    position: relative;
+    z-index: 2;
     color: white;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
   }
   
   .tab-content {
     margin-top: 1rem;
     color: #333;
+  }
+
+  .tab-content-animate-in {
+    animation-name: fadeIn;
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
+  }
+  
+  .tab-content-animate-out {
+    animation-name: fadeOut;
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
   }
   
   @media (max-width: 1270px) {
