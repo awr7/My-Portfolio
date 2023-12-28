@@ -2,11 +2,12 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { HoneycombComponent } from '../tech-stack/honeycomb/honeycomb.component';
+import { PuzzleGameComponent } from '../puzzle-game/puzzle-game.component';
 
 @Component({
   selector: 'app-about-table',
   standalone: true,
-  imports: [CommonModule, HoneycombComponent],
+  imports: [CommonModule, HoneycombComponent, PuzzleGameComponent],
   templateUrl: './about-table.component.html',
   styleUrl: './about-table.component.scss',
   animations: [

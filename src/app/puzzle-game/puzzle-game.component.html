@@ -1,0 +1,38 @@
+<div class="tab-text">
+    Solve this puzzle to reveal a fun fact!
+   </div>
+   <div class="puzzle-wrapper">
+  <div class="puzzle-container" #puzzleContainer>
+    <div class="puzzle-tile" *ngFor="let tile of tiles; let i = index"
+         [ngClass]="{'empty-tile': i === emptyTileIndex}"
+         [ngStyle]="getTileStyle(i)"
+         (click)="swapTiles(i)">
+    </div>
+  </div>
+  </div>
+
+  <button (click)="revealFunFact()" class="reveal-fun-fact-button">Reveal Fun Fact</button>
+  <button (click)="showHelp()" class="help-button">Need Help?</button>
+  <button (click)="newPuzzle()" class="new-puzzle-button">New Puzzle</button>
+  
+  
+  <!-- Popup Modal for Completion Message -->
+  <div class="modal" *ngIf="funFactRevealed">
+    <div class="modal-content">
+      <h2>{{ puzzleSolved ? 'Congratulations!' : 'Welp, I tried too and it is kinda hard' }}</h2>
+      <p>{{ currentFunFact }}</p>
+      <button (click)="restartGame()">Play Again</button>
+    </div>
+  </div>
+
+<!-- Help Modal -->
+<div class="modal" *ngIf="showHelpModal">
+  <div class="modal-content">
+    <h2>How to Play</h2>
+    <p>The goal is to rearrange the tiles back into their original order by clicking on a tile adjacent to the empty space. Tiles can only move into the empty space one at a time. Need a hint? Check out this video for a nice strategy.:</p>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/OXG04zPBsZ8" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <button (click)="closeHelp()">Close</button>
+  </div>
+</div>
