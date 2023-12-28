@@ -1,11 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, style, transition, animate } from '@angular/animations';
+import { HoneycombComponent } from '../tech-stack/honeycomb/honeycomb.component';
 
 @Component({
   selector: 'app-about-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HoneycombComponent],
   templateUrl: './about-table.component.html',
   styleUrl: './about-table.component.scss',
   animations: [

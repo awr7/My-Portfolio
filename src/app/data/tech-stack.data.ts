@@ -22,6 +22,7 @@ export const TECH_STACK: TechStackItem[] = [
   // Databases
   { name: 'MySQL', type: 'database', icon: 'assets/icons/mySQL.png' },
   { name: 'Postgresql', type: 'database', icon: 'assets/icons/postgresql.png' },
+  { name: 'MongoDB', type: 'database', icon: 'assets/icons/mongoDB.png' },
 
   { name: 'divider', type: 'divider', icon: '' },
 

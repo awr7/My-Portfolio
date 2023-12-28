@@ -1,0 +1,16 @@
+<div class="honeycomb-container">
+    <ng-container *ngFor="let row of rows">
+      <div class="group">
+        <ng-container *ngFor="let item of row">
+          <div class="honeycomb" [ngStyle]="{'--tech-color': getTechColor(item.type)}">
+            <svg width="76" height="68" viewBox="0 0 76 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.394 0.25C21.9133 0.250367 20.4587 0.640406 19.1765 1.38093C17.8942 2.12146 16.8294 3.18639 16.089 4.46875L1.47904 29.7812C0.738498 31.0639 0.348633 32.5189 0.348633 34C0.348633 35.4811 0.738498 36.9361 1.47904 38.2188L16.089 63.5312C16.8294 64.8136 17.8942 65.8785 19.1765 66.6191C20.4587 67.3596 21.9133 67.7496 23.394 67.75H52.6065C54.0885 67.751 55.5447 67.3615 56.8284 66.6209C58.1121 65.8803 59.178 64.8147 59.919 63.5312L74.5253 38.2188C75.2658 36.9361 75.6557 35.4811 75.6557 34C75.6557 32.5189 75.2658 31.0639 74.5253 29.7812L59.9153 4.46875C59.1746 3.18584 58.1092 2.12055 56.8262 1.38C55.5432 0.639435 54.0879 0.249709 52.6065 0.25H23.394Z" fill="black"/>
+            </svg>                
+            <img [src]="item.icon" [alt]="item.name" class="tech-icon">
+            <span class="tech-name">{{ item.name }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  

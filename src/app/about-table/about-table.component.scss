@@ -7,8 +7,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
     user-select: none;
   }
   
@@ -17,6 +17,7 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     font-family: 'Acme', sans-serif;
     position: relative;
+    width: 100%;
   }
 
   .tab-background {
@@ -126,9 +127,7 @@
     }
   
     .tab-content {
-      font-size: 0.9rem;
-        display: flex;
-        flex-grow: 1;
+        font-size: 0.9rem;
         align-items: center;
         text-align: center;   
     }
@@ -152,5 +151,11 @@
     .tab-image{
       top: 20%;
     }
+}
+
+@media (max-width: 370px) {
+  .tab-content {
+      font-size: 0.6rem;
+  }
 }
   
