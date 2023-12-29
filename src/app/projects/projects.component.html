@@ -1,21 +1,36 @@
+<div class="project-overlay" [class.active]="showOverlay">
+  <div class="overlay-content">
+    <h2 *ngIf="selectedProject?.title as title">
+      <img [src]="title" alt="Project Title">
+    </h2>
+    <p *ngIf="selectedProject?.longDescription as longDescription">{{ longDescription }}</p>
+    
+    <!-- Check if features exist before iterating over them -->
+    <ul *ngIf="selectedProject?.features as features">
+      <li *ngFor="let feature of features">{{ feature }}</li>
+    </ul>
+  </div>
+
+  <!-- Close button -->
+  <button class="close-overlay-btn" (click)="closeOverlay()">X</button>
+</div>
+
 <div class="projects-container">
-    <div class="page-title">
-        Projects
-      </div>
-    <div *ngFor="let project of projects; let i = index" 
-         [ngClass]="{'active': project.active, 'left': i < activeIndex, 'right': i > activeIndex}" 
-         (click)="setActive(project)" 
-         class="project-card">
-  
-      <img [src]="project.image" alt="{{ project.title }}" class="project-image">
-  
-      <img [src]="project.title" alt="{{ project.title }}" class="project-title-image">
-  
-      <div class="project-card-content">
-        <div class="description-container">
-            <p>{{ project.description }}</p>
-            <button class="learn-more-btn" *ngIf="project.active">Learn more</button>
-          </div>
-        </div>
+  <div class="page-title">
+    Projects
+  </div>
+  <div *ngFor="let project of projects; trackBy: trackByProjectId; let i = index" 
+       [ngClass]="{'active': project.active, 'left': i < activeIndex, 'right': i > activeIndex}" 
+       class="project-card" (click)="setActive(project)">
+
+    <img [src]="project.image" alt="{{ project.title }}" class="project-image" loading="lazy"> <!-- Lazy loading -->
+    <img *ngIf="project.title as titleImage" [src]="titleImage" alt="{{ project.title }}" class="project-title-image" loading='lazy' >
+
+    <div class="project-card-content">
+      <div class="description-container">
+        <p>{{ project.description }}</p>
+        <button class="learn-more-btn" *ngIf="project.active" (click)="showProjectDetails(project); $event.stopPropagation();">Learn more</button>
       </div>
     </div>
+  </div>
+</div>
