@@ -1,0 +1,13 @@
+.projects-container {
+    display: flex;
+    background: linear-gradient(180deg, #7BAFD4 0%, #000 100%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    border: 2px solid red;
+    animation: fadeIn 1s ease-out;
+    box-sizing: border-box;
+    position: relative;
+  }

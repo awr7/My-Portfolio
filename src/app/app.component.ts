@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectsComponent } from './projects/projects.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, WelcomeComponent, AboutMeComponent, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, WelcomeComponent, AboutMeComponent, HttpClientModule, ProjectsComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
