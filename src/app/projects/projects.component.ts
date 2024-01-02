@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TECH_STACK } from '../data/tech-stack.data';
+import { TechStackItem } from '../models/tech-stack.model';
 interface Project {
   id: string;
   title: string;
@@ -9,6 +11,9 @@ interface Project {
   techStack?: string[];
   image: string;
   active: boolean;
+  liveUrl?: string;
+  sourceCodeUrl: string;
+  overlayImage?: string;
 }
 
 @Component({
@@ -20,35 +25,8 @@ interface Project {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[] = [
-    {
-      id: 'project1',
-      title: 'assets/pawsTitle.png',
-      description: 'A web application designed to address the challenges of stray dogs, unnecessary euthanasia, and overbreeding that escalated during the 2020 pandemic.',
-      longDescription: 'Welcome to Paws4Homes, a web application designed to address the challenges of stray dogs, unnecessary euthanasia, and overbreeding that escalated during the 2020 pandemic. Paws4Homes is designed to alleviate these issues by connecting shelters, breeders, and potential pet owners, thereby ensuring the well-being and proper care of dogs.', 
-      features:['Shelters and breeders can create accounts to manage dog listings, communicate directly with customers through a built-in chat, and handle adoption applications, and edit their account details.', 'On the other side, customers benefit from a tailored dog matching quiz, access to a diverse catalog of dogs, the ability to apply for adoption, and direct communication with shelters or breeders.'],
-      image: 'assets/winterDog.jpg',
-      active: false
-    },
-    {
-      id: 'project2',
-      title: 'assets/syncSecureTitle.png',
-      description: ' A Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
-      longDescription:'SyncSecure is a Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
-      features: ['Two-Component Architecture: DuoT (Token): Responsible for generating OTPs DuoV (Validator): Serves as an authentication server.', 'Dynamic OTP Generation: Utilizing a mathematical algorithm to dynamically generates OTPs.'],
-      image: 'assets/OTP.png',
-      active: false
-    },
-    {
-      id: 'project3',
-      title: 'assets/s3Title.png',
-      description: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
-      longDescription: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
-      features: ['Remote and Local fetching: Ability to fetch both files stored locally or from a URL dynamically generating HTTP responses.', 'File Manipulation:', 'No standard wrapper classes or libraries:'],
-      image: 'assets/S3.jpg',
-      active: false
-    },
-  ];
+
+  projects: Project[]=[];
 
   activeIndex: number = 1;
   showOverlay: boolean = false;
@@ -57,6 +35,44 @@ export class ProjectsComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
+    this.projects = [
+      {
+        id: 'project1',
+        title: 'assets/pawsTitle.png',
+        description: 'A web application designed to address the challenges of stray dogs, unnecessary euthanasia, and overbreeding that escalated during the 2020 pandemic.',
+        longDescription: 'Welcome to Paws4Homes, a web application designed to address the challenges of stray dogs, unnecessary euthanasia, and overbreeding that escalated during the 2020 pandemic. Paws4Homes is designed to alleviate these issues by connecting shelters, breeders, and potential pet owners, thereby ensuring the well-being and proper care of dogs.', 
+        features:['Account creation for shelters/breeders and customers.', 'Add, edit or delete dog listings,', 'Direct communication through a built-in chat', 'Handle adoption applications', 'Edit account details.' , 'Customers benefit from a tailored dog matching quiz',  'Access to a catalog of dogs' ,'The ability to apply for adoption, and direct communication with shelters or breeders.'],
+        image: 'assets/winterDog.jpg',
+        techStack: ['JavaScript', 'HTML', 'CSS','Python','React','Django','Postgresql', 'Gradle',],
+        active: false,
+        liveUrl:'https://paws4homes.vercel.app/',
+        sourceCodeUrl:'https://github.com/awr7/Paws4Homes',
+        overlayImage: 'assets/paws4homes.png'
+      },
+      {
+        id: 'project2',
+        title: 'assets/syncSecureTitle.png',
+        description: ' A Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
+        longDescription:'SyncSecure is a Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
+        features: ['Two-Component Architecture: DuoT (Token): Responsible for generating OTPs DuoV (Validator): Serves as an authentication server.', 'Dynamic OTP Generation: Utilizing a mathematical algorithm to dynamically generates OTPs.'],
+        image: 'assets/OTP.png',
+        techStack: ['Java'],
+        active: false,
+        sourceCodeUrl:'https://github.com/awr7/Paws4Homes'
+      },
+      {
+        id: 'project3',
+        title: 'assets/s3Title.png',
+        description: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
+        longDescription: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
+        features: ['Remote and Local fetching: Ability to fetch both files stored locally or from a URL dynamically generating HTTP responses.', 'File Manipulation:', 'No standard wrapper classes or libraries:'],
+        image: 'assets/S3.jpg',
+        techStack: ['Java'],
+        active: false,
+        liveUrl:'https://paws4homes.vercel.app/',
+        sourceCodeUrl:'https://github.com/awr7/Paws4Homes'
+      },
+    ];
     if (this.projects.length > 0) {
       this.projects[0].active = true;
 
@@ -107,15 +123,23 @@ export class ProjectsComponent implements OnInit {
     this.selectedProject = project;
     this.showOverlay = true;
     this.cdr.markForCheck();
+    document.body.style.overflow = 'hidden';
   }
 
   closeOverlay(): void {
     this.showOverlay = false;
     this.cdr.markForCheck();
+    document.body.style.overflow = 'auto';
   }
 
   trackByProjectId(index: number, project: Project): string {
     return project.id;
   }
+
+  getTechIcons(techNames: string[]): TechStackItem[] {
+    return techNames.map(name => TECH_STACK.find(tech => tech.name === name))
+                    .filter(tech => tech !== undefined) as TechStackItem[];
+  }
+  
   
 }
