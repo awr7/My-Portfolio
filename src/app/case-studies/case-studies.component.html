@@ -1,0 +1,14 @@
+<div class="studys-container">
+    <div class="page-title">
+      Case Studies
+    </div>
+    <div class="cards-container">
+      <app-case-study-card *ngFor="let study of caseStudies"
+                           [title]="study.title"
+                           [imageUrl]="study.imageUrl"
+                           [description]="study.description"
+                           [studyLink]="study.studyLink">
+      </app-case-study-card>
+    </div>
+  </div>
+  

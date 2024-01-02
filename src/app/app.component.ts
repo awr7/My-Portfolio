@@ -5,7 +5,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectsComponent } from './projects/projects.component';
-import { CaseStudysComponent } from './case-studys/case-studys.component';
+import { CaseStudysComponent } from './case-studies/case-studies.component';
 
 @Component({
   selector: 'app-root',
