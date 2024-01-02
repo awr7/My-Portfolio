@@ -31,22 +31,28 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       return; // Exit if window is not defined
     }
     const container = this.scrollContainer.nativeElement;
-    const speed = 1;
+    const pixelsPerSecond = 100;
   
-    let move = () => {
+    let lastTime = Date.now();
+  
+    let animate = () => {
+      const now = Date.now();
+      const deltaTime = now - lastTime;
+      lastTime = now;
+  
+      const distance = (pixelsPerSecond * deltaTime) / 1000;
       let maxScrollLeft = container.scrollWidth - container.clientWidth;
+  
       if (container.scrollLeft > maxScrollLeft - 100) {
         container.scrollLeft = 0;
       } else {
-        container.scrollLeft += speed;
+        container.scrollLeft += distance;
       }
+  
+      window.requestAnimationFrame(animate);
     };
   
-    let animate = () => {
-      move();
-      window.requestAnimationFrame(animate); // Directly use window
-    };
-  
-    window.requestAnimationFrame(animate); // Start the loop
+    window.requestAnimationFrame(animate);
   }
+  
 }
