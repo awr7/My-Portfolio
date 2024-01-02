@@ -1,5 +1,6 @@
 import { Component, Renderer2, ElementRef, ViewChild, AfterViewInit, OnDestroy  } from '@angular/core';
 import { TECH_STACK } from '../data/tech-stack.data'
+import { TechStackItem } from '../models/tech-stack.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -31,8 +32,32 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       return; // Exit if window is not defined
     }
     const container = this.scrollContainer.nativeElement;
-    const pixelsPerSecond = 100;
   
+    // Function to calculate the width of a single item
+    const calculateItemWidth = (item: TechStackItem) => {
+      const screenWidth = window.innerWidth;
+      if (item.type === 'divider') {
+        // Estimate the divider width as a fraction of the font size
+        return screenWidth < 820 ? 40 * 0.2 : 60 * 0.2;
+      } else {
+        return screenWidth < 820 ? 45 : 60; // Width for tech stack items
+      }
+    };
+
+  
+    // Function to calculate total width of all items
+    const calculateTotalWidth = () => {
+      const gap = 15;
+      return TECH_STACK.reduce((total, item) => total + calculateItemWidth(item) + gap, 0);
+    };
+  
+    let totalWidthOfItems = calculateTotalWidth();
+    // Re-calculate total width on window resize
+    window.addEventListener('resize', () => {
+      totalWidthOfItems = calculateTotalWidth();
+    });
+  
+    const pixelsPerSecond = 100;
     let lastTime = Date.now();
   
     let animate = () => {
@@ -41,9 +66,8 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       lastTime = now;
   
       const distance = (pixelsPerSecond * deltaTime) / 1000;
-      let maxScrollLeft = container.scrollWidth - container.clientWidth;
   
-      if (container.scrollLeft > maxScrollLeft - 100) {
+      if (container.scrollLeft >= totalWidthOfItems) {
         container.scrollLeft = 0;
       } else {
         container.scrollLeft += distance;
@@ -54,5 +78,4 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
   
     window.requestAnimationFrame(animate);
   }
-  
 }
