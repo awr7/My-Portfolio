@@ -43,7 +43,7 @@ export class ProjectsComponent implements OnInit {
         longDescription: 'Welcome to Paws4Homes, a web application designed to address the challenges of stray dogs, unnecessary euthanasia, and overbreeding that escalated during the 2020 pandemic. Paws4Homes is designed to alleviate these issues by connecting shelters, breeders, and potential pet owners, thereby ensuring the well-being and proper care of dogs.', 
         features:['Account creation for shelters/breeders and customers.', 'Add, edit or delete dog listings,', 'Direct communication through a built-in chat', 'Handle adoption applications', 'Edit account details.' , 'Customers benefit from a tailored dog matching quiz',  'Access to a catalog of dogs' ,'The ability to apply for adoption, and direct communication with shelters or breeders.'],
         image: 'assets/winterDog.jpg',
-        techStack: ['JavaScript', 'HTML', 'CSS','Python','React','Django','Postgresql', 'Gradle',],
+        techStack: ['JavaScript', 'HTML', 'CSS','Python','React','Django','Postgresql',],
         active: false,
         liveUrl:'https://paws4homes.vercel.app/',
         sourceCodeUrl:'https://github.com/awr7/Paws4Homes',
@@ -53,24 +53,23 @@ export class ProjectsComponent implements OnInit {
         id: 'project2',
         title: 'assets/syncSecureTitle.png',
         description: ' A Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
-        longDescription:'SyncSecure is a Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application.',
-        features: ['Two-Component Architecture: DuoT (Token): Responsible for generating OTPs DuoV (Validator): Serves as an authentication server.', 'Dynamic OTP Generation: Utilizing a mathematical algorithm to dynamically generates OTPs.'],
+        longDescription:'SyncSecure is a Java-based project designed to generate and validate One-Time Passwords (OTPs), operating similarly to the well-known Duo application. This project was made lightweight and with a modular structure, the project allows for easy customization and integration into various systems requiring secure authentication methods.',
+        features: ['Two-Component Architecture: DuoT (Token): Responsible for generating OTPs DuoV (Validator): Serves as an authentication server.', 'Dynamic OTP Generation', 'Socket communication', 'Efficent Communication Protocol makes the application function with only having to ever send 6 bytes of data.', 'Embedded Web Server', 'Timer-Based OTPs'],
         image: 'assets/OTP.png',
         techStack: ['Java'],
         active: false,
-        sourceCodeUrl:'https://github.com/awr7/Paws4Homes'
+        sourceCodeUrl:'https://github.com/awr7/SyncSecure'
       },
       {
         id: 'project3',
         title: 'assets/s3Title.png',
-        description: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
-        longDescription: 'S3 is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
-        features: ['Remote and Local fetching: Ability to fetch both files stored locally or from a URL dynamically generating HTTP responses.', 'File Manipulation:', 'No standard wrapper classes or libraries:'],
+        description: 'S3-Proto-Stream is a Java-based application mimicking Amazon S3 functionalities, enabling file retrieval and manipulation through a web interface.',
+        longDescription: 'S3-Proto-Stream is a lightweight, Java-based server application designed to emulate a subset of Amazon AWS S3s GetObject functionality. This project is focuses on the handling of GET requests for local and remote files using specific URI formats. Built using a lightweight and modular structure for allowing easy integration into various systems.',
+        features: ['Remote and Local fetching.', 'File Manipulation capable of fetching specific byte ranges from files, both local and remote.','Supports custom URI formats', 'Developed with no standard wrapper classes or libraries instead dealing with raw bytes and int data.','Capable of fetching specific byte ranges from files, both local and remote.'],
         image: 'assets/S3.jpg',
         techStack: ['Java'],
         active: false,
-        liveUrl:'https://paws4homes.vercel.app/',
-        sourceCodeUrl:'https://github.com/awr7/Paws4Homes'
+        sourceCodeUrl:'https://github.com/awr7/S3-Proto-Stream'
       },
     ];
     if (this.projects.length > 0) {
