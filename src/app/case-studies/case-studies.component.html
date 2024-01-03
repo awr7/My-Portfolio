@@ -2,13 +2,15 @@
     <div class="page-title">
       Case Studies
     </div>
-    <div class="cards-container">
-      <app-case-study-card *ngFor="let study of caseStudies"
+    <div *ngIf="currentIndex > 0" class="arrow left-arrow" (click)="showPreviousSet()">&#8592;</div>
+      <div #cardsContainer class="cards-container">
+      <app-case-study-card *ngFor="let study of visibleCaseStudies; let i = index"
+                           [ngClass]="{'active-card': isActiveCard(i)}"
                            [title]="study.title"
                            [imageUrl]="study.imageUrl"
                            [description]="study.description"
                            [studyLink]="study.studyLink">
       </app-case-study-card>
     </div>
+    <div *ngIf="currentIndex < (originalCaseStudies.length - 3) / 3" class="arrow right-arrow" (click)="showNextSet()">&#8594;</div>
   </div>
-  
