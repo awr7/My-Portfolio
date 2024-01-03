@@ -13,12 +13,22 @@
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <input type="text" formControlName="name" placeholder="Name" class="form-control">
+            <div *ngIf="contactForm.controls['name'].touched && contactForm.controls['name'].invalid">
+              Name is required.
+            </div>
           </div>
           <div class="form-group">
             <input type="email" formControlName="email" placeholder="Email Address" class="form-control">
+            <div *ngIf="contactForm.controls['email'].touched && contactForm.controls['email'].invalid">
+              <span *ngIf="contactForm.controls['email'].errors?.['required']">Email is required.</span>
+              <span *ngIf="contactForm.controls['email'].errors?.['email']">Please enter a valid email.</span>
+            </div>
           </div>
           <div class="form-group">
             <textarea formControlName="message" placeholder="Message" class="form-control message"></textarea>
+            <div *ngIf="contactForm.controls['message'].touched && contactForm.controls['message'].invalid">
+              Message is required.
+            </div>
           </div>
           <button type="submit" [disabled]="!contactForm.valid" class="submit-btn">Submit</button>
         </form>
@@ -47,5 +57,20 @@
         </a>
       </div>
     </footer>
+  </div>
+
+
+  <div class="message-overlay" *ngIf="showSuccessMessage">
+    <div class="message-box">
+      <p>Thank you! Your message has been sent.</p>
+      <button (click)="closeMessage()">OK</button>
+    </div>
+  </div>
+  
+  <div class="message-overlay" *ngIf="showErrorMessage">
+    <div class="message-box">
+      <p>Error: There was a problem sending your message.</p>
+      <button (click)="closeMessage()">OK</button>
+    </div>
   </div>
   
