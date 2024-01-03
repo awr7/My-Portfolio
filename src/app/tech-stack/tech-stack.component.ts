@@ -57,7 +57,7 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       totalWidthOfItems = calculateTotalWidth();
     });
   
-    const pixelsPerSecond = 100;
+    const viewportWidthsPerSecond = 0.05;
     let lastTime = Date.now();
   
     let animate = () => {
@@ -65,7 +65,10 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const deltaTime = now - lastTime;
       lastTime = now;
   
-      const distance = (pixelsPerSecond * deltaTime) / 1000;
+      // Convert viewport widths to pixels
+      const viewportWidth = window.innerWidth;
+      const distance = (viewportWidthsPerSecond * viewportWidth * deltaTime) / 1000;
+  
   
       if (container.scrollLeft >= totalWidthOfItems) {
         container.scrollLeft = 0;
