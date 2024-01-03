@@ -6,11 +6,12 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectsComponent } from './projects/projects.component';
 import { CaseStudysComponent } from './case-studies/case-studies.component';
+import { ContactComponent } from './contact/contact.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, WelcomeComponent, AboutMeComponent, HttpClientModule, ProjectsComponent, CaseStudysComponent],
+  imports: [CommonModule, RouterOutlet, WelcomeComponent, AboutMeComponent, HttpClientModule, ProjectsComponent, CaseStudysComponent, ContactComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

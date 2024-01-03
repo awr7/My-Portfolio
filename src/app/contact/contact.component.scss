@@ -1,0 +1,13 @@
+.contact-container {
+    display: flex;
+    background-color: #f9f9f9;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    border: 2px solid red;
+    animation: fadeIn 1s ease-out;
+    box-sizing: border-box;
+    position: relative;
+  }
