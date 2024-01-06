@@ -1,9 +1,17 @@
-<!-- Navigation Bar -->
-  <!-- Hamburger Menu Icon -->
-    <!-- Icon bars here -->
-  <!-- Navigation Links -->
-
-
+<!-- Hamburger Menu -->
+<div class="page">
+  <span class="menu_toggle" (click)="toggleMenu()">
+    <i class="menu_open fa fa-bars fa-lg" *ngIf="!isOpen"></i>
+    <i class="menu_close fa fa-times fa-lg" *ngIf="isOpen"></i>
+  </span>
+  <ul class="menu_items" [class.hidden]="!isOpen">
+    <li><a href="#"><i class="icon fa fa-home fa-2x"></i> Welcome</a></li>
+    <li><a href="#"><i class="icon fa fa-user fa-2x"></i> About Me</a></li>
+    <li><a href="#"><i class="icon fa fa-briefcase fa-2x"></i> Projects</a></li>
+    <li><a href="#"><i class="icon fa fa-book fa-2x"></i> Case Studies</a></li>
+    <li><a href="#"><i class="icon fa fa-envelope fa-2x"></i> Contact</a></li>
+  </ul>
+  <main class="content" [ngClass]="{'shazam': isOpen}">
 <!-- Welcome Section Component -->
 <app-welcome></app-welcome>
 
@@ -18,3 +26,5 @@
 
 <!-- Contact Section Component -->
 <app-contact></app-contact>
+  </main>
+</div>
