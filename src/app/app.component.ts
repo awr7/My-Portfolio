@@ -33,6 +33,8 @@ export class AppComponent {
   toggleMenu(): void {
     this.isOpen = !this.isOpen;
     const contentElement = this.el.nativeElement.querySelector('.content');
+    const hamburgerElement = this.el.nativeElement.querySelector('#hamburger-6');
+    const lines: NodeListOf<Element> = this.el.nativeElement.querySelectorAll('.hamburger .line');
     const viewportHeight = window.innerHeight;
 
     if (this.isOpen) {
@@ -42,9 +44,19 @@ export class AppComponent {
       const transformOriginY = currentSection * viewportHeight;
       this.renderer.setStyle(contentElement, 'transform-origin', `0 ${transformOriginY}px`);
       this.renderer.addClass(contentElement, 'shazam');
+      this.renderer.addClass(hamburgerElement, 'is-active');
+      lines.forEach(line => this.renderer.addClass(line, 'rotate-back'));
     } else {
 
       this.renderer.removeClass(contentElement, 'shazam');
+      this.renderer.removeClass(hamburgerElement, 'is-active');
+      lines.forEach(line => this.renderer.addClass(line, 'rotate-back'));
+
+      // Remove the rotate-back class after the rotation duration
+      setTimeout(() => {
+        lines.forEach(line => this.renderer.removeClass(line, 'rotate-back'));
+      }, 300);
+
       contentElement.addEventListener('transitionend', () => {
 
         if (!this.isOpen) {
@@ -57,7 +69,16 @@ export class AppComponent {
   closeMenu(): void {
     this.isOpen = false;
     const pageElement = this.el.nativeElement.querySelector('.page');
+    const hamburgerElement = this.el.nativeElement.querySelector('#hamburger-6');
+    const lines: NodeListOf<Element> = this.el.nativeElement.querySelectorAll('.hamburger .line');
     this.renderer.removeClass(pageElement, 'shazam');
+    this.renderer.removeClass(hamburgerElement, 'is-active');
+    lines.forEach(line => this.renderer.addClass(line, 'rotate-back'));
+
+    // Remove the rotate-back class after the rotation duration
+    setTimeout(() => {
+      lines.forEach(line => this.renderer.removeClass(line, 'rotate-back'));
+    }, 300);
   }
 
   scrollToElement(elementId: string, event: MouseEvent): void {

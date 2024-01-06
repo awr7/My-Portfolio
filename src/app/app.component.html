@@ -1,9 +1,12 @@
 <!-- Hamburger Menu -->
 <div class="page">
-  <span class="menu_toggle" (click)="toggleMenu()">
-    <i class="menu_open fa fa-bars fa-lg" *ngIf="!isOpen"></i>
-    <i class="menu_close fa fa-times fa-lg" *ngIf="isOpen"></i>
-  </span>
+  <div class="menu_toggle" (click)="toggleMenu()">
+    <div class="hamburger" id="hamburger-6">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </div>
+  </div>
   <ul class="menu_items" [class.hidden]="!isOpen">
     <li><a href="#welcome" (click)="scrollToElement('welcome', $event)"><i class="icon fa fa-home fa-2x"></i> Welcome</a></li>
     <li><a href="#aboutMe" (click)="scrollToElement('aboutMe', $event)"><i class="icon fa fa-user fa-2x"></i> About Me</a></li>
