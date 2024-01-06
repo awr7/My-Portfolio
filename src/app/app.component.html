@@ -5,26 +5,26 @@
     <i class="menu_close fa fa-times fa-lg" *ngIf="isOpen"></i>
   </span>
   <ul class="menu_items" [class.hidden]="!isOpen">
-    <li><a href="#"><i class="icon fa fa-home fa-2x"></i> Welcome</a></li>
-    <li><a href="#"><i class="icon fa fa-user fa-2x"></i> About Me</a></li>
-    <li><a href="#"><i class="icon fa fa-briefcase fa-2x"></i> Projects</a></li>
-    <li><a href="#"><i class="icon fa fa-book fa-2x"></i> Case Studies</a></li>
-    <li><a href="#"><i class="icon fa fa-envelope fa-2x"></i> Contact</a></li>
+    <li><a href="#welcome" (click)="scrollToElement('welcome', $event)"><i class="icon fa fa-home fa-2x"></i> Welcome</a></li>
+    <li><a href="#aboutMe" (click)="scrollToElement('aboutMe', $event)"><i class="icon fa fa-user fa-2x"></i> About Me</a></li>
+    <li><a href="#projects" (click)="scrollToElement('projects', $event)"><i class="icon fa fa-briefcase fa-2x"></i> Projects</a></li>
+    <li><a href="#caseStudies" (click)="scrollToElement('caseStudies', $event)"><i class="icon fa fa-book fa-2x"></i> Case Studies</a></li>
+    <li><a href="#contact" (click)="scrollToElement('contact', $event)"><i class="icon fa fa-envelope fa-2x"></i> Contact</a></li>
   </ul>
   <main class="content" [ngClass]="{'shazam': isOpen}">
 <!-- Welcome Section Component -->
-<app-welcome></app-welcome>
+<app-welcome id="welcome"></app-welcome>
 
 <!-- About Section Component -->
-<app-about-me></app-about-me>
+<app-about-me id="aboutMe"></app-about-me>
 
 <!-- Projects Section Component -->
-<app-projects></app-projects>
+<app-projects id="projects"></app-projects>
 
 <!-- Case Study Section Component -->
-<app-case-studies></app-case-studies>
+<app-case-studies id="caseStudies"></app-case-studies>
 
 <!-- Contact Section Component -->
-<app-contact></app-contact>
+<app-contact id="contact"></app-contact>
   </main>
 </div>
