@@ -11,6 +11,8 @@ import { CaseStudyCardComponent } from '../case-study-card/case-study-card.compo
 })
 export class CaseStudysComponent implements AfterViewInit {
 
+  animationInProgress = false; // New property
+
   @ViewChild('cardsContainer', { static: false }) cardsContainerRef!: ElementRef<HTMLElement>;
 
   constructor(private renderer: Renderer2) {}
@@ -65,24 +67,32 @@ export class CaseStudysComponent implements AfterViewInit {
   currentIndex = 0;
 
   showNextSet() {
-    if (this.currentIndex < this.originalCaseStudies.length - 3) {
+    if (this.currentIndex < this.originalCaseStudies.length - 3 && !this.animationInProgress) {
+      this.animationInProgress = true;
       this.animateCards('animate-out');
       setTimeout(() => {
         this.currentIndex++;
         this.updateCardsView();
         this.animateCards('animate-in');
       }, 500);
+      setTimeout(() => {
+        this.animationInProgress = false; 
+      }, 1000); 
     }
   }
 
   showPreviousSet() {
-    if (this.currentIndex > 0) {
+    if (this.currentIndex > 0 && !this.animationInProgress) {
+      this.animationInProgress = true;
       this.animateCards('animate-out');
       setTimeout(() => {
         this.currentIndex--;
         this.updateCardsView();
         this.animateCards('animate-in');
       }, 500);
+      setTimeout(() => {
+        this.animationInProgress = false;
+      }, 1000);
     }
   }
 
