@@ -57,8 +57,7 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       totalWidthOfItems = calculateTotalWidth();
     });
   
-    const baseSpeed = 35;
-
+    const baseSpeed = 69; // Nice :)
     let lastTime = Date.now();
   
     let animate = () => {
@@ -66,13 +65,7 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const deltaTime = now - lastTime;
       lastTime = now;
   
-      // Adjust speed based on screen width and device pixel ratio
-      const screenWidth = window.innerWidth;
-      const pixelRatio = window.devicePixelRatio || 1;
-      const speedAdjustmentFactor = Math.max(1, screenWidth / 500) * pixelRatio;
-      const adjustedSpeed = baseSpeed * speedAdjustmentFactor;
-  
-      const distance = (adjustedSpeed * deltaTime) / 1000;
+      const distance = (baseSpeed * deltaTime) / 1000;
   
       if (container.scrollLeft >= totalWidthOfItems) {
         container.scrollLeft = 0;
